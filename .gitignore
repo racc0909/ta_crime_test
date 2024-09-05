@@ -1,0 +1,4 @@
+__pycache__/
+.venv/
+data/la_crime_2020_2024_full.csv
+LHL_Notebook_Template.ipynb
