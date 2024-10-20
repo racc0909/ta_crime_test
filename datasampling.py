@@ -15,6 +15,12 @@ df_sample = df.sample(n=200000, random_state=2)
 df_sample = df_sample.drop(columns=['AREA','Rpt Dist No', 'Part 1-2', 'Crm Cd','Mocodes','Premis Cd','Weapon Used Cd','Status', 'Cross Street'])
 df_sample = df_sample[df_sample['Date Rptd'].str.contains('2024') == False]
 
+# Clean the TIME OCC
+df_sample['TIME OCC'] = [time.zfill(4) for time in df_sample['TIME OCC'].astype('string')]
+df_sample['TIME OCC'] = pd.to_datetime(df_sample['TIME OCC'], format = "%H%M")
+df_sample['TIME OCC'] = df_sample['TIME OCC'].dt.strftime('%H:%M:%S')
+
+
 # Insert crime categories
 # Function to categorize crimes based on the crime categories dictionary
 def categorize_crime(crime):
@@ -43,7 +49,7 @@ df_safe = df_sample[(df_sample["Vict Age"] > 18) | (df_sample["Vict Age"] < 0)]
 
 ## Remove all cases that contains sensitive crime description
 # Words to check for
-words = ['child', 'sex', 'rape', 'chld', 'animal', 'philia', 'minor']
+words = ['child', 'sex', 'rape', 'chld', 'animal', 'philia', 'minor', 'sodomy', 'anim', 'BEASTIALITY']
 
 # Use str.contains with a regular expression to match any of the words
 pattern = '|'.join(words)  # Create a pattern with | as the separator
