@@ -43,7 +43,7 @@ df_safe = df_sample[(df_sample["Vict Age"] > 18) | (df_sample["Vict Age"] < 0)]
 
 ## Remove all cases that contains sensitive crime description
 # Words to check for
-words = ['child', 'sex', 'rape', 'chld', 'animal', 'philia']
+words = ['child', 'sex', 'rape', 'chld', 'animal', 'philia', 'minor']
 
 # Use str.contains with a regular expression to match any of the words
 pattern = '|'.join(words)  # Create a pattern with | as the separator
