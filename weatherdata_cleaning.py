@@ -14,4 +14,4 @@ df_new['datetime'] = pd.to_datetime(df_new['datetime'], format='%Y-%m-%d')
 df_new.info()
 
 # Export cleaned data as a new csv
-df_new.to_csv('data/la_weather_2020_2024_cleaned.csv', index=False)
+df_new.to_csv('data/la_weather_2020_2024_reduced.csv', index=False)
